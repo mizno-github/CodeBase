@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Schema\Blueprint;
-use App\errorCode;
+use App\errorCodes;
 use App\article;
 
 class errorCodeController extends Controller
@@ -15,11 +15,12 @@ class errorCodeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public $errorCodes; 
+    public $errorCode;
     public $article;
 
-    function __construct(errorCode $errorCodes ,article $article) {
-        $this->errorCodes = $errorCodes;
+    function __construct(errorCodes $errorCode, article $article)
+    {
+        $this->errorCode = $errorCode;
         $this->article = $article;
     }
 
@@ -29,7 +30,7 @@ class errorCodeController extends Controller
         // $errors = $this->errorCodes->all();
         $searchWord = $request->get('searchWord');
 
-        $errors = $this->errorCodes->where('title', 'like', '%'. $searchWord. '%')
+        $errors = $this->errorCode->where('title', 'like', '%'. $searchWord. '%')
                                    ->orWhere('errorCode', 'like', '%'. $searchWord. '%')
                                    ->orWhere('lang', 'like', '%'. $searchWord. '%')
                                    ->orWhere('solution', 'like', '%'. $searchWord. '%')
@@ -41,10 +42,10 @@ class errorCodeController extends Controller
                                  ->orWhere('lang', 'like', '%'. $searchWord. '%')
                                  ->orWhere('problem', 'like', '%'. $searchWord. '%')
                                  ->orWhere('assistance', 'like', '%'. $searchWord. '%')
-                                 ->get();            
-        return view('errorCode.index',compact('errors','searchWord','article'));
+                                 ->get();
+        return view('errorCode.index', compact('errors', 'searchWord', 'article'));
     }
-    // 
+    //
     /**
      * Show the form for creating a new resource.
      *
@@ -64,7 +65,7 @@ class errorCodeController extends Controller
     public function store(Request $request)
     {
         $savedata = $request->all();
-        $store = $this->errorCodes->fill($savedata)->save();
+        $store = $this->errorCode->fill($savedata)->save();
 
         return View('CodeBase');
     }
@@ -89,7 +90,7 @@ class errorCodeController extends Controller
      */
     public function edit($id)
     {
-        $editData = $this->errorCodes->find($id);
+        $editData = $this->errorCode->find($id);
         return view('errorCode.edit', compact('editData'));
     }
 
@@ -103,7 +104,7 @@ class errorCodeController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $this->errorCodes->find($id)->fill($input)->save();
+        $this->errorCode->find($id)->fill($input)->save();
         return view('CodeBase');
     }
 
@@ -115,7 +116,7 @@ class errorCodeController extends Controller
      */
     public function destroy($id)
     {
-        $this->errorCodes->find($id)->delete();
+        $this->errorCode->find($id)->delete();
         return view('CodeBase');
     }
 }

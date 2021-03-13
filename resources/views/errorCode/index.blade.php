@@ -109,21 +109,24 @@
 		$('.modal-body').html('<p>' + title + '</p>');
 		console.log(url);
 	});
-</script>
-<script>
-	$(function() {
+
 		function e(str) {
 			str = str.replace(/&/g, '&amp;');
 			str = str.replace(/</g, '&lt;');
 			str = str.replace(/>/g, '&gt;');
 			str = str.replace(/"/g, '&quot;');
 			str = str.replace(/'/g, '&#39;');
+			str = str.replace(/&lt;code&gt;/g, '<pre class="prettyprint" style="white-space: pre;">');
+			str = str.replace(/&lt;!code&gt;/g, '</pre>');
+			// console.log(str);
 			return str;
 		}
 		$('.searchMark').each(function(){
+			console.log('str');
 			var txt = e($(this).text());
 			$(this).html(txt.replace(/{{ $searchWord }}/g, '<span class="bg-warning">{{ $searchWord }}</span>'));
 		});
-	});
 </script>
+	<!--Google Code Prettify-->
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&skin=sunburst"></script>
 @endsection

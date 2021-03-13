@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class errorCode extends Model
+class errorcodes extends Model
 {
-    protected $table = 'errorCodes';
     protected $fillable = [
         'id',
         'title',
@@ -16,4 +15,5 @@ class errorCode extends Model
         'assistance',
         'lang',
     ];
+
 }

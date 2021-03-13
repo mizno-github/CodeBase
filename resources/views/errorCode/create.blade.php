@@ -24,7 +24,6 @@
     {{ Form::text('lang', null, ['class' => 'w-100', 'placeholder' => '入力してください']) }}
     <br>
     {{ Form::submit('作成',['class' => 'btn bg-primary text-white mr-0 mt-4', 'placeholder' => '入力してください'])}}
-    
 {{ Form::close() }}
 </div>
 	</html>
