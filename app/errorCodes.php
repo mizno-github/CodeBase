@@ -15,5 +15,4 @@ class errorcodes extends Model
         'assistance',
         'lang',
     ];
-
 }
