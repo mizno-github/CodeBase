@@ -14,12 +14,12 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->bigIncrements('id'); // コラムID
-            $table->text('title'); //コラムのタイトル
-            $table->string('lang'); // 関係する言語
-            $table->text('problem'); // コラムの内容
-            $table->text('assistance')->nullable(); // 検索補助。その他
-            $table->timestamps(); // 
+            $table->bigIncrements('id');
+            $table->text('title');
+            $table->string('lang');
+            $table->text('problem');
+            $table->text('assistance')->nullable();
+            $table->timestamps();
         });
     }
 
