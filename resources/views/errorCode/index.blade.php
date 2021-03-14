@@ -1,6 +1,12 @@
 @extends('layout.CodeBasetemp')
 @section('CodeBase')
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&skin=sunburst"></script>
+<script type="text/javascript">
+  searchWord = '{{ $searchWord}}';
+</script>
+<script src="{{ asset('/js/modal.js') }}"></script>
+<script src="{{ asset('/js/searchAddCss.js') }}"></script>
 
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -17,7 +23,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
         {{ Form::open(['method' => 'DELETE', 'class' => 'deleteUrl']) }}
-        {{ Form::submit('削除', ['class' => 'btn btn-primary deleteModal text-light'] }}
+        {{ Form::submit('削除', ['class' => 'btn btn-primary deleteModal text-light']) }}
         {{ Form::close() }}
       </div>
     </div>
@@ -74,7 +80,6 @@
 <h1 class="ml-5">コラム</h1>
 <ul class="">
   @foreach($article as $article)
-
   <li class="mt-3 list-unstyled">
     <div class="bg-white rounded p-4">
       <div class="d-flex">
@@ -105,35 +110,4 @@
   </li>
   @endforeach
 </ul>
-<table>
-  <script>
-    $('.deleteId').on('click', function() {
-      var url = $(this).data('delete');
-      var title = $(this).data('title');
-      console.log(url);
-
-      $('.deleteUrl').attr('action', url);
-      $('.modal-body').html('<p>' + title + '</p>');
-      console.log(url);
-    });
-
-    function e(str) {
-      str = str.replace(/&/g, '&amp;');
-      str = str.replace(/</g, '&lt;');
-      str = str.replace(/>/g, '&gt;');
-      str = str.replace(/"/g, '&quot;');
-      str = str.replace(/'/g, '&#39;');
-      str = str.replace(/&lt;code&gt;/g, '<pre class="prettyprint" style="white-space: pre;">');
-      str = str.replace(/&lt;!code&gt;/g, '</pre>');
-      // console.log(str);
-      return str;
-    }
-    $('.searchMark').each(function() {
-      console.log('str');
-      var txt = e($(this).text());
-      $(this).html(txt.replace(/{{ $searchWord }}/g, '<span class="bg-warning">{{ $searchWord }}</span>'));
-    });
-  </script>
-  <!--Google Code Prettify-->
-  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&skin=sunburst"></script>
-  @endsection
+@endsection
