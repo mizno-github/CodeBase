@@ -1,75 +1,72 @@
 /* CodeBase.blade.php */
+
 body {
-    background-color: #E6E6E6;
+  background-color: #E6E6E6;
 }
 
 .wrapper {
-    padding-top: 200px;
-    height: 9000px;
+  padding-top: 200px;
 }
 
 .topTitle {
-    text-align: center;
-    font-size: 120px;
+  text-align: center;
+  font-size: 120px;
 }
 
 .mainSearch {
-    text-align: center;
+  text-align: center;
 }
 
 .serchLayout {
-    padding: 10px;
-    width: 500px;
-    height: 40px;
-    outline: none;
+  padding: 10px;
+  width: 500px;
+  height: 40px;
+  outline: none;
 }
 
 .serchButton {
-    width: 70px;
-    height: 40px;
-    outline: none;
+  width: 70px;
+  height: 40px;
+  outline: none;
 }
 
 .createBar::before {
-    content: '作成';
+  content: '作成';
 }
+
 /* errorCode */
+
 .menu-bar {
-    background-color: #D6D6D6;
-    position: fixed;
-    width: 100%;
-    top: 0px;
-    z-index: 2;
+  background-color: #D6D6D6;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 2;
 }
 
 .error-table {
-    border-radius: 20px!important;
+  border-radius: 20px!important;
 }
 
 .text-pre {
-    width: 100%;
-    white-space: pre-wrap;
+  width: 100%;
+  white-space: pre-wrap;
 }
 
 .table {
-    /* overflow-x: scroll; */
+  /* overflow-x: scroll; */
 }
+
 /* CheatSheet */
 
 .tanan {
-    width:30%;
+  width: 30%;
 }
 
 .ranan {
-    width: 6%;
+  width: 6%;
 }
 
 .aaaa {
-white-space: nowrap
-  }
-
-  シーケンス図
-  存在している期間
-  隙間を埋める
-  request実線
-  レスポンス　破線
+  white-space: nowrap
+}
