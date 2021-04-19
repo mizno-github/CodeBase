@@ -14,14 +14,14 @@ class CreateErrorCodesTable extends Migration
     public function up()
     {
         Schema::create('errorCodes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->text('title');
-            $table->text('errorCode');
-            $table->string('lang');
-            $table->text('solution');
-            $table->text('detailed');
-            $table->text('assistance')->nullable();
-            $table->timestamps();
+            $table->bigIncrements('id'); // エラーレコードID
+            $table->text('title'); //エラーコードのタイトル
+            $table->text('errorCode'); // エラーコードをそのまま保存
+            $table->string('lang'); // 発生した言語
+            $table->text('solution'); // 解決した方法
+            $table->text('detailed'); // エラー詳細
+            $table->text('assistance')->nullable(); // 検索補助。その他
+            $table->timestamps(); // 
         });
     }
 
@@ -35,3 +35,14 @@ class CreateErrorCodesTable extends Migration
         Schema::dropIfExists('errorCodes');
     }
 }
+
+// mysql,php.laravel,
+// テーブル作成のカラム
+// エラーレコードID
+// エラーコード全行
+// 発生した言語１
+// ２
+// ３
+// 解決した方法
+// エラー詳細
+// 検索補助・その他
