@@ -22,22 +22,11 @@ class errorCodeController extends Controller
     public function index(Request $request)
     {
         $searchWord = $request->get('searchWord');
+        $searchWords = $this->extractKeywords($searchWord);
 
-        $errors = $this->errorCode
-            ->where('title', 'like', '%' . $searchWord . '%')
-            ->orWhere('errorCode', 'like', '%' . $searchWord . '%')
-            ->orWhere('lang', 'like', '%' . $searchWord . '%')
-            ->orWhere('solution', 'like', '%' . $searchWord . '%')
-            ->orWhere('detailed', 'like', '%' . $searchWord . '%')
-            ->orWhere('assistance', 'like', '%' . $searchWord . '%')
-            ->get();
+        $errors = $this->errorCode->search($searchWords);
+        $article = $this->article->search($searchWords);
 
-        $article = $this->article
-            ->where('title', 'like', '%' . $searchWord . '%')
-            ->orWhere('lang', 'like', '%' . $searchWord . '%')
-            ->orWhere('problem', 'like', '%' . $searchWord . '%')
-            ->orWhere('assistance', 'like', '%' . $searchWord . '%')
-            ->get();
         return view('errorCode.index', compact('errors', 'searchWord', 'article'));
     }
 
@@ -71,5 +60,10 @@ class errorCodeController extends Controller
     {
         $this->errorCode->find($id)->delete();
         return view('CodeBase');
+    }
+
+    private function extractKeywords(string $input, int $limit = -1): array
+    {
+        return preg_split('/[\p{Z}\p{Cc}]++/u', $input, $limit, PREG_SPLIT_NO_EMPTY);
     }
 }

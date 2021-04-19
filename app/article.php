@@ -15,22 +15,48 @@ class article extends Model
         'assistance', // 検索補助
     ];
 
-    function get($editId)
+    public function search($searchWords)
+    {
+        return $this->where(function ($query) use ($searchWords) {
+            $query->where('title', 'like', '%' . $searchWords[0] . '%')
+                ->orWhere('lang', 'like', '%' . $searchWords[0] . '%')
+                ->orWhere('problem', 'like', '%' . $searchWords[0] . '%')
+                ->orWhere('assistance', 'like', '%' . $searchWords[0] . '%');
+        })
+        ->where(function ($query) use ($searchWords) {
+            if (isset($searchWords[1])) {
+                $query->where('title', 'like', '%' . $searchWords[1] . '%')
+                    ->orWhere('lang', 'like', '%' . $searchWords[1] . '%')
+                    ->orWhere('problem', 'like', '%' . $searchWords[1] . '%')
+                    ->orWhere('assistance', 'like', '%' . $searchWords[1] . '%');
+            }
+        })
+        ->where(function ($query) use ($searchWords) {
+            if (isset($searchWords[2])) {
+                $query->where('title', 'like', '%' . $searchWords[2] . '%')
+                    ->orWhere('lang', 'like', '%' . $searchWords[2] . '%')
+                    ->orWhere('problem', 'like', '%' . $searchWords[2] . '%')
+                    ->orWhere('assistance', 'like', '%' . $searchWords[2] . '%');
+            }
+        })->get();
+    }
+
+    public function get($editId)
     {
         return $this->find($editId);
     }
 
-    function create($request)
+    public function create($request)
     {
         $this->fill($request)->save();
     }
 
-    function edit($updateId, $request)
+    public function edit($updateId, $request)
     {
         $this->find($updateId)->fill($request)->save();
     }
 
-    function onesDelete($deleteId)
+    public function onesDelete($deleteId)
     {
         $this->find($deleteId)->delete();
     }
