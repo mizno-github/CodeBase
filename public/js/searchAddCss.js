@@ -10,6 +10,7 @@ $(function () {
 
   // function
   function e(str) {
+    // 一文字づつエスケープ処理をしている
     str = str.replace(/&/g, '&amp;');
     str = str.replace(/</g, '&lt;');
     str = str.replace(/>/g, '&gt;');
