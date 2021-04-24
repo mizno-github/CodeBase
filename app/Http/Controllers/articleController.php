@@ -9,88 +9,37 @@ class articleController extends Controller
 {
     public $article;
 
-    function __construct(article $article){
-        $this->article = $article; 
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    function __construct(article $article)
     {
-        //
+        $this->article = $article;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('article.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $this->article->fill($request->all())->save();
+        $this->article->create($request->all());
         return view('CodeBase');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit($editId)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $articles = $this->article->find($id);
+        $articles = $this->article->get($editId);
         return view('article.edit', compact('articles'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        $saveData = $request->all();
-        $this->article->find($id)->fill($saveData)->save();
+        $this->article->edit($id, $request->all());
         return view('CodeBase');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy($deleteId)
     {
-        $this->article->find($id)->delete();
+        $this->article->onesDelete($deleteId);
         return view('CodeBase');
     }
 }

@@ -16,7 +16,7 @@
 <body>
 <div class="menu-bar">
 	<div class="menu-content col-10 mx-auto d-flex justify-content-between rounded">
-		<h1 class="d-inline my-auto display-3"><a href="/">CodeBase1.2</a></h1>
+		<h1 class="d-inline my-auto display-3"><a href="/">CodeBase</a></h1>
 
 		<ul class="list-unstyled my-4 d-inline d-flex bg-white createBar">
 			<li class="p-1"><a class="btn btn-success btn-lg" href="{{route('article.create') }}">コラム</a></li>
